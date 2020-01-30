@@ -5,7 +5,7 @@ import { rootReducer } from './store/reducers';
 import { Provider } from 'react-redux';
 import { logger } from 'redux-logger';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
@@ -32,9 +32,6 @@ const App: React.FC = () => {
                 </li>
               </ul>
             </nav>
-
-            {/* A <Switch> looks through its children <Route>s and
-                renders the first one that matches the current URL. */}
             <Switch>
               <Route path="/about">
                 <About />
@@ -44,6 +41,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/">
                 <Home />
+              </Route>
+              <Route path="*">
+                <NoMatch />
               </Route>
             </Switch>
           </div>
@@ -63,6 +63,10 @@ function About() {
 
 function Users() {
   return <h2>Users</h2>;
+}
+
+function NoMatch() {
+  return <h2>404</h2>;
 }
 
 export default App;
